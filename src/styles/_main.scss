@@ -1,8 +1,10 @@
 @import 'base/typography';
 @import 'base/colors';
+@import 'base/animations';
 @import 'base/mixins';
 @import 'components/Header/header';
 @import 'components/AboutMe/aboutMe';
+@import 'components/HomeWorkSection/homeWorkSection';
 :root {
   background-image: url('../assets/background.jpg');
   background-size: cover;

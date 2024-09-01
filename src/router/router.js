@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue'
-
+import TypographyView from '../Views/TypographyView.vue'
 const routes = [
     { 
         path: '/', 
@@ -9,6 +9,13 @@ const routes = [
             title: "David Mikulić",
         }
     },
+    {
+      path: '/typography',
+      component: TypographyView,
+      meta : {
+        title: "Manipulacija tipografije"
+      }
+    }
 
 ]
 

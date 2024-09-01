@@ -22,12 +22,57 @@
 .contact-container {
     @include containerBottomRight;
     padding: 5px;
+    padding-right: 10px;
     width: 40%;
     @include flexCenterRow;
     gap: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: $gray;
+        img {
+            animation: starHover 1s infinite linear;
+        }
+    }
+}
+
+.contact-link {
+    all: unset;
 }
 
 .header-container {
     display: flex;
     
+}
+
+.nav-link {
+    all:unset;
+    font-weight: 600;
+    font-size: 22px;
+    cursor: pointer;
+    
+}
+
+.nav-link {
+  color: $black;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  background-color: $black;
+  bottom: -2px;
+  left: 0;
+  transform-origin: center;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+.nav-link:hover::before {
+  transform-origin: center;
+  transform: scaleX(0.9);
 }
