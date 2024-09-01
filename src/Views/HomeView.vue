@@ -2,7 +2,10 @@
     <div class="container">
         <Header></Header>
         <AboutMe></AboutMe>
-        <HomeWorkSection></HomeWorkSection>
+        <HomeWorkSection
+        title="manipulacija tipografije"
+        titleIconLink="https://i.imgur.com/xSQOX8u.png"
+        ></HomeWorkSection>
     </div>
 </template>
 
