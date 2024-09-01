@@ -1,0 +1,71 @@
+.about-container {
+    @include flexRow;
+    overflow: hidden;
+}
+
+.my-image {
+    @include containerBottomLeftRight;
+    width: 55%;
+}
+
+.david-img {
+    width: 504px;
+}
+
+.o-meni {
+    @include containerBottomRight;
+    @include flexColumn;
+    width: 100%;
+}
+
+.article-title {
+    
+    @include flexRow;
+    justify-content: baseline;
+    border-bottom: 2px solid $black;
+    width: inherit;
+    gap: 5px;
+}
+
+.article-title-text {
+    font-weight: 900;
+}
+
+.article-icon {
+    margin-left: 20px;
+}
+
+.point {
+    @include flexCenterRow;
+    gap: 10px;
+}
+
+.points {
+    @include flexColumn;
+    align-items: baseline;
+    padding-left: 30px;
+    margin-top: 10px;
+}
+
+
+.about-me {
+    @include flexRow;
+    gap: 100px;
+    padding-right: 50px;
+    transition: all 0.4s ease-in-out;
+    height: 100%;
+    background-color: $gray;
+}
+
+.point-paragraph {
+
+}
+
+.software-icons {
+    @include flexCenterColumn;
+    gap: 10px;
+}
+
+.software-icon {
+    filter: drop-shadow(0px 3px 3px $black);
+}

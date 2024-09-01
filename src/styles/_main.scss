@@ -1,0 +1,41 @@
+@import 'base/typography';
+@import 'base/colors';
+@import 'base/mixins';
+@import 'components/Header/header';
+@import 'components/AboutMe/aboutMe';
+:root {
+  background-image: url('../assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: $font;
+  color: $black;
+}
+
+
+body {
+  margin: 0 auto;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#app {
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: hsl(319, 87%, 76%);
+}
+
+::selection {
+  color: white;
+  background: hsl(319, 87%, 76%);
+}
