@@ -5,6 +5,7 @@
 @import 'components/Header/header';
 @import 'components/AboutMe/aboutMe';
 @import 'components/HomeWorkSection/homeWorkSection';
+@import 'components/Footer/footer';
 :root {
   background-image: url('../assets/background.jpg');
   background-size: cover;
@@ -33,11 +34,15 @@ body {
 }
 
 ::-moz-selection { /* Code for Firefox */
-  color: white;
-  background: hsl(319, 87%, 76%);
+  color: rgb(0, 0, 0);
+  background: hsl(152, 87%, 76%);
 }
 
 ::selection {
-  color: white;
-  background: hsl(319, 87%, 76%);
+  color: rgb(0, 0, 0);
+  background: hsl(152, 87%, 76%);
+}
+
+.icon {
+  filter: invert(1);
 }

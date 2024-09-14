@@ -1,34 +1,63 @@
 .work-left {
     @include flexRow;
-    
+    border-left: 2px solid $black;
+    border-bottom: 2px solid $black;
 }
 
 .work-right {
     @include flexRow;
     flex-direction: row-reverse;
     border-left: 2px solid $black;
+    border-bottom: 2px solid $black;
 }
 
 .images-slider {
   position: relative;
   overflow: hidden;
   width: 80%;
+  cursor: pointer;
 }
 
 .slider {
   display: flex;
   transition: transform 0.5s ease-in-out; /* Animation for sliding effect */
   width: 100%; /* Set the slider width */
+  
 }
 
 .slider-image {
   min-width: 100%; /* Ensure each image takes up full slider width */
   box-sizing: border-box;
+  border-right: 2px solid $black;
 }
 
 .slider-image img {
   display: block;
+  object-fit: cover;
+  height: 20rem;
   width: 100%;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    filter:brightness(1.34);
+  }
+}
+
+.slider-image-big {
+  min-width: 100%; /* Ensure each image takes up full slider width */
+  box-sizing: border-box;
+  border-right: 2px solid $black;
+}
+
+.slider-image-big img {
+  display: block;
+  object-fit: cover;
+  height: 33rem;
+  width: 100%;
+  filter: brightness(0.87);
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    filter:brightness(1);
+  }
 }
 
 .slider-button {
@@ -58,21 +87,26 @@
     @include flexColumn;
     width: 100%;
     @include containerBottomRight;
-    align-items: baseline;
+    border-bottom: 0px;
 }
 
 .article-description-text {
     @include flexCenterRow;
     gap: 10px;
-    
+    font-size: 23px;
     font-weight: 500;
+    line-height: normal;
 }
 
 .article-description {
-    @include flexColumn;
+    @include flexCenterVertical;
+    align-items: baseline;
     padding-left: 20px;
-    width: 80%;
     line-height: 30px;
+    height: 100%;
+    padding-right: 100px;
+    justify-content: flex-start;
+    align-self: flex-start;
 }
 
 .gallery-button {
@@ -118,4 +152,18 @@
 .modal-content {
   min-width: 30%;
   min-height: 30%;
+  max-width: 90%;
+  max-height: 90%;
+  @include flexCenterColumn;
+  gap: 20px;
+}
+
+.figma-button {
+  padding: 15px;
+  width: auto;
+  gap: 10px;
+}
+
+.figma-button:hover {
+  
 }

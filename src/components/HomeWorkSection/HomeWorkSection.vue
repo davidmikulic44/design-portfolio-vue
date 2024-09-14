@@ -3,8 +3,8 @@
     <div class="images-slider">
       <div v-if="images.length" class="slider">
         <div class="slider" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-          <div v-for="(image, index) in images" :key="index" class="slider-image">
-            <img :src="image" :alt="`Slide ${index + 1}`" @click="openModal(image)" />
+          <div v-for="(imageObj, index) in images" :key="index" :class="imageSize">
+            <img :src="imageObj.img" :alt="`Slide ${index + 1}`" @click="openModal(index)" />
           </div>
         </div>
         <button @click="prevSlide" class="slider-button prev-button">
@@ -20,36 +20,58 @@
     </div>
     <div class="work-description">
       <div class="article-title">
-        <img class="article-icon" :src="titleIconLink" alt="" />
+        <img class="article-icon icon" :src="titleIconLink" alt="" />
         <h2 class="article-title-text">{{ title }}</h2>
       </div>
       <div class="article-description">
         <p class="article-description-text">
-          <img src="https://i.imgur.com/vaYlOXk.png" alt="Description Icon">
-          {{ description }}
+          <img class="icon" src="https://i.imgur.com/vaYlOXk.png" alt="Description Icon">
+          {{ images[currentSlide]?.desc }}
         </p>
-        <RouterLink :to="galleryLink" class="gallery-button">
-          galerija <img src="https://i.imgur.com/bt5VAHU.png" alt="Gallery Icon">
-        </RouterLink>
       </div>
     </div>
+
     <!-- Modal for Image Preview -->
     <div v-if="isModalOpen" class="modal" @click.self="closeModal">
       <span class="close-modal" @click="closeModal">&times;</span>
-      <img class="modal-content" :src="selectedImage" alt="Modal Image">
+      <div class="modal-content">
+        <img class="modal-content" :src="selectedImage.img" alt="Modal Image">
+
+        <!-- Conditionally show "Open in Figma" button if a link exists -->
+
+        <div v-if="selectedImage.link">
+          <a v-if="selectedImage.figmaLink" :href="selectedImage.link" target="_blank" class="gallery-button figma-button">
+            Open in Figma <img class="software-icon-sml" src="https://i.imgur.com/3cbYQmo.png" alt="">
+          </a>
+          <a v-else :href="selectedImage.link" target="_blank" class="gallery-button figma-button">
+            Go to site <img src="https://i.imgur.com/bt5VAHU.png" alt="Gallery Icon" class="icon">
+          </a>
+        </div>
+
+        
+
+        <!-- Navigation buttons inside the modal -->
+        <button @click="prevSlideInModal" class="slider-button prev-button">
+          <img src="https://i.imgur.com/rxxTFwq.png" alt="Previous">
+        </button>
+        <button @click="nextSlideInModal" class="slider-button next-button">
+          <img src="https://i.imgur.com/uelWp81.png" alt="Next">
+        </button>
+      </div>
     </div>
   </article>
 </template>
+
+
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
+
 const category = ref(null);
 const images = ref([]);
-const currentSlide = ref(0); // Track the current slide
+const currentSlide = ref(0);
 const side = ref(null);
-// Modal state
 const isModalOpen = ref(false);
-const selectedImage = ref(null);
+const selectedImage = ref({ img: null, link: null, desc: null, figmaLink: null });
 
 const props = defineProps({
     title: {
@@ -75,6 +97,10 @@ const props = defineProps({
     description: {
         type: String,
         required: true
+    },
+    imageSize: {
+      type: String,
+      required: true,
     }
 });
 
@@ -93,24 +119,35 @@ onMounted(async () => {
 
     side.value = props.side;
 });
-
 // Slide navigation
+const openModal = (index) => {
+    currentSlide.value = index; // Set the current slide to the clicked index
+    selectedImage.value = images.value[currentSlide.value]; // Set the selected image
+    isModalOpen.value = true;
+};
+
+const closeModal = () => {
+    isModalOpen.value = false;
+    selectedImage.value = { img: null, link: null }; // Reset the selected image
+};
+
+// Slide navigation inside the modal
+const nextSlideInModal = () => {
+    nextSlide(); // Use the same nextSlide function
+    selectedImage.value = images.value[currentSlide.value]; // Update selectedImage
+};
+
+const prevSlideInModal = () => {
+    prevSlide(); // Use the same prevSlide function
+    selectedImage.value = images.value[currentSlide.value]; // Update selectedImage
+};
+
+// Slide navigation outside the modal
 const nextSlide = () => {
     currentSlide.value = (currentSlide.value + 1) % images.value.length;
 };
 
 const prevSlide = () => {
     currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length;
-};
-
-// Modal control
-const openModal = (image) => {
-    selectedImage.value = image;
-    isModalOpen.value = true;
-};
-
-const closeModal = () => {
-    isModalOpen.value = false;
-    selectedImage.value = null;
 };
 </script>
