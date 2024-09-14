@@ -1,0 +1,37 @@
+.footer-container {
+    border-right: 2px solid $black;
+    border-left: 2px solid $black;
+    border-bottom: 2px solid $black;
+    padding: 60px;
+    @include flexSpaceBetween;
+    align-items: center;
+}
+
+.footer-logo-img {
+    width: 200px;
+}
+
+.contact {
+    @include flexRow;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    a {
+        all: unset;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.footer-contacts {
+    @include flexColumn;
+    gap: 12px;
+
+}
+
+.contact-title {
+    font-size: 28px;
+    line-height: 10px;
+}
